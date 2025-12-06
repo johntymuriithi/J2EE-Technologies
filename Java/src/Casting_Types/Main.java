@@ -40,7 +40,6 @@ public class Main {
 
         System.out.println(num_tester);
 
-        // bytes, short and char in an expression in java gets converted to int
         byte total = (byte) (by * byter);
     }
 }
