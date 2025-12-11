@@ -26,10 +26,23 @@ public class Main {
 
         int c = 20;
         int d = c--;
-        System.out.println(d);  // here we expect d to be 20
+//        System.out.println((d));  // here we expect d to be 20
         /**
          * d = c
          * c = c + 1
          */
+
+//        ========================================================
+        boolean truly = false;
+        boolean falsy = true;
+        int num = 10;
+        int denom = 11;
+
+        System.out.println(truly && falsy); // evaluates the right-hand operand only when the left hand operand is false
+
+        if	(denom	!=	0	&&	num	/	denom	>	10)
+        {
+            System.out.println("Funny Boy");
+        }
     }
 }
