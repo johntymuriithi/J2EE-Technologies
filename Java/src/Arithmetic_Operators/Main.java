@@ -9,7 +9,7 @@ package Arithmetic_Operators;
  *
  */
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws java.io.IOException {
         // compound operators
         int num1 = 23;
         num1 += num1 + 1;
@@ -38,11 +38,33 @@ public class Main {
         int num = 10;
         int denom = 11;
 
-        System.out.println(truly && falsy); // evaluates the right-hand operand only when the left hand operand is false
+//        System.out.println(truly && falsy); // evaluates the right-hand operand only when the left hand operand is false
 
         if	(denom	!=	0	&&	num	/	denom	>	10)
         {
             System.out.println("Funny Boy");
         }
+        // =========================================
+        // Iteration Operators in java
+        int number = 20;
+        int number2 = 21;
+        while (number > number2); // Empty-body (null) loops
+
+        int[] numbers = {2, 3, 4, 5, 20};
+        int target = 5;
+        int i;
+
+        for (i = 0; i < numbers.length && numbers[i] != target; i++);
+//        System.out.println(i);
+
+        // do-while
+        char choice;
+        do {
+            System.out.println("Select No of Ur CHoice");
+            System.out.println("1:");
+            System.out.println("2:");
+            System.out.println("3:");
+            choice = (char) System.in.read();
+        } while (choice < '1' || choice > '4');
     }
 }

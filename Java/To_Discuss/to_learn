@@ -2,3 +2,10 @@
 2. Wrapper Classes
 3. How char is a subset of int in Java
 4. Work stealing
+5. for(;;) infinite loops (used by JVM)
+6. Loop unrolling & performance
+7. Common loop bugs professionals avoid
+8. How compilers optimize loops
+9. Why Java forbids some loop tricks C allows
+10. “Short loops are frequently coded without
+    bodies when the controlling expression can handle all of the details itself.”
