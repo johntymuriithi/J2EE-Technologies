@@ -1,4 +1,4 @@
-1. Autoboxing
+1. Autoboxing vs Casting
 2. Wrapper Classes
 3. How char is a subset of int in Java
 4. Work stealing
@@ -9,3 +9,4 @@
 9. Why Java forbids some loop tricks C allows
 10. “Short loops are frequently coded without
     bodies when the controlling expression can handle all of the details itself.”
+11. Explain Integer Caching (-128 - 127)
