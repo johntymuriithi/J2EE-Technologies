@@ -10,3 +10,26 @@
 10. “Short loops are frequently coded without
     bodies when the controlling expression can handle all of the details itself.”
 11. Explain Integer Caching (-128 - 127)
+
+==========--------------===========
+12. Bounded buffer problem
+13. Why (while) instead of (if) in interprocess communication in Threads
+     - Prevents Spurious Wake-ups
+     - Safety rechecking
+     - Handles Multiple threads
+
+14. When a thread calls: wait():
+      - It Releases the object lock
+      - Goes to WAITING state
+      - Stops consuming CPU
+
+    When another thread calls: notify():
+       - It wakes one waiting thread
+       - That thread completes for the lock again
+
+15. How to detect deadlock
+16. How to prevent deadlock
+17. How (ReentrantLock) helps avoid deadlock
+
+=========-------------------------=============
+1. What are qualifiers and non-qualifiers
