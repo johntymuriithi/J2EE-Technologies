@@ -25,9 +25,11 @@ public class Main {
 
         System.out.println(box.volume());
         System.out.println(box1.volume());
+        System.out.println(Box.class.getAnnotations());
     }
 }
 
+@Deprecated
 class Box {
     double width;
     double height;

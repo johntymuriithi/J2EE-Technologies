@@ -28,7 +28,7 @@ class Worker {
 
         // Big-O of this is O(n)
         for (Names name : Names.getCachedNames()) {
-            System.out.println(name);
+            System.out.println(name.ordinal());
         }
 
     }

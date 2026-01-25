@@ -33,3 +33,17 @@
 
 =========-------------------------=============
 1. What are qualifiers and non-qualifiers
+
+👉 Build a mini validation framework
+👉 Build a security interceptor
+👉 Build a custom Spring-style annotation scanner
+
+Reflection (how annotations are read)
+Spring-style annotation scanning
+Or practical backend architecture patterns
+
+Generics
+
+👉 Type erasure (slow & visual)
+👉 Wildcards (?) with simple examples
+👉 Why List<Object> ≠ List<String>
