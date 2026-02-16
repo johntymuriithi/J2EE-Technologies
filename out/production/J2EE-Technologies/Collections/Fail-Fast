@@ -1,0 +1,107 @@
+🔥 Part 1 — What is Fail-Fast?
+📌 Definition
+
+A fail-fast collection immediately throws:
+
+ConcurrentModificationException
+
+
+if it detects that the collection was structurally modified during iteration.
+
+🧠 What does “structural modification” mean?
+
+Structural modification =
+
+Adding elements
+
+Removing elements
+
+Clearing collection
+
+NOT:
+
+Updating an element’s internal state
+
+Replacing value in a Map via put() for same key
+
+❌ Classic Fail-Fast Example
+List<String> list = new ArrayList<>();
+list.add("A");
+list.add("B");
+
+for (String s : list) {
+    list.remove(s);   // ❌
+}
+
+
+Output:
+
+ConcurrentModificationException
+
+🧠 Why does this happen?
+
+Internally, most collections maintain:
+
+int modCount;
+
+
+Each structural modification increments it.
+
+Iterator stores:
+
+expectedModCount;
+
+
+On each next() call:
+
+if (modCount != expectedModCount)
+    throw new ConcurrentModificationException();
+
+
+So it’s a safety mechanism, not true thread safety.
+
+✅ Correct Way (Modern)
+Using Iterator
+Iterator<String> it = list.iterator();
+
+while (it.hasNext()) {
+    String s = it.next();
+    if (s.equals("A")) {
+        it.remove();   // ✅ safe
+    }
+}
+
+✅ Using removeIf() (Modern & Clean)
+list.removeIf(s -> s.equals("A"));
+
+
+This internally uses iterator.remove().
+
+⚠️ Important Clarification
+
+Fail-fast is:
+
+❌ NOT thread-safe
+
+❌ NOT guaranteed (best-effort detection)
+
+✔ Designed to detect programmer mistakes early
+
+🧵 Fail-Safe Alternative
+
+Example:
+
+CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+
+
+This does NOT throw ConcurrentModificationException.
+
+It works by:
+
+Iterating over a snapshot copy
+
+Tradeoff:
+
+More memory
+
+Slower writes

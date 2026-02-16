@@ -47,3 +47,16 @@ Generics
 👉 Type erasure (slow & visual)
 👉 Wildcards (?) with simple examples
 👉 Why List<Object> ≠ List<String>
+
+Reflection
+JVM
+Generics
+Class-Loaders
+
+Collection Framework
+1️⃣ List contract (index-based behavior)
+2️⃣ Set contract & uniqueness rules
+3️⃣ Map contract (key/value semantics)
+4️⃣ Iterators vs Spliterators
+5️⃣ Concurrent collections & memory visibility
+6️⃣ Designing your own collection
