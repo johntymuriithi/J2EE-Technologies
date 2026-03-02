@@ -1,0 +1,6 @@
+         Notes on ArrayList class
+
+         - It implements List interface and extends AbstractList
+         - AbstractList provides partial implementations - share the reusable implementation
+         - Arraylist finishes - provides real data structure logic
+         - List defines the contract, ArrayList fulfills the contract

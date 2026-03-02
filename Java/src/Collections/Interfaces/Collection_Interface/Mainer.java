@@ -1,6 +1,5 @@
-package Collections.Collection_Interface;
+package Collections.Interfaces.Collection_Interface;
 
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.*;
 
 public class Mainer {

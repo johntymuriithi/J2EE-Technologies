@@ -60,3 +60,19 @@ Collection Framework
 4️⃣ Iterators vs Spliterators
 5️⃣ Concurrent collections & memory visibility
 6️⃣ Designing your own collection
+
+How Spring relies heavily on contracts
+
+How proxies depend on interface contracts
+
+Or how contract violations cause subtle production bugs
+Java Records and Lombok's @Data
+
+Discuss CharSequence, Comparable, Comparator, Serialize
+BlockingQueue (used in thread pools)
+Producer-Consumer pattern
+ThreadPoolExecutor internals
+BlockingDeque (multi-threaded producer-consumer)
+Internals of ArrayDeque (circular buffer math)
+How HashMap + Deque builds LRU cache
+Monotonic Queue pattern (advanced algorithmic use)

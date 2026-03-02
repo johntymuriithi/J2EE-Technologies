@@ -1,0 +1,18 @@
+         Notes on ArrayList class
+
+         - It implements List interface and extends AbstractList
+         - AbstractList provides partial implementations - share the reusable implementation
+         - Arraylist finishes - provides real data structure logic
+         - List defines the contract, ArrayList fulfills the contract
+
+         ~~ AbstractList - "Separate structure-specific logic from behavior that is common across implementations"
+         - ArrayList allows for a resizable array - It manages a dynamic array internally
+
+         How Resizing Affects Time Complexity
+         ~ ArrayList is backed by: Object[] elementData; -- when fulls, it grows (usually by 1.5x).
+         - When capacity is reached: Allocate new bigger array, Copy all elements to new Array, Replace old array ref
+            i.e newCapacity = oldCapacity + (oldCapacity >> 1)
+
+         - Provides Cache locality - Means how well your program uses the CPU cache by accessing memeory that is
+         physically close together
+
