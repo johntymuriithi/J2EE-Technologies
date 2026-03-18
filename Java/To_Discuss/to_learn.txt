@@ -76,3 +76,12 @@ BlockingDeque (multi-threaded producer-consumer)
 Internals of ArrayDeque (circular buffer math)
 How HashMap + Deque builds LRU cache
 Monotonic Queue pattern (advanced algorithmic use)
+
+HashMaps
+
+How resizing works internally
+Load factor & threshold
+Why hashCode should use prime numbers
+Why mutable keys are dangerous
+HashMap vs ConcurrentHashMap
+How this connects to distributed systems hashing

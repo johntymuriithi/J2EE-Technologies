@@ -1,0 +1,81 @@
+        Notes on HashMap
+
+        Imagine a School with Lockers
+        Think of Hashmap like lockers in a school hallway.
+        Each locker has:
+                    - A number - (hash)
+                    - Inside the locker - (value)
+                    - On the locker - ur name tag (key)
+
+        HashMap<String, Integer> map = new HashMap<>();
+        map.put("John", 45);
+
+        "John" = key
+        95 = value
+
+        How does java know which locker to use?
+
+        Step 1: hashCode() - "Which Locker"
+         - Every key has a special function - hashCode() - it returns an int e.g "John".hashCode()
+         - Java takes that number and does sth like ( index = hash % arraySize )
+         - This gives the locker number
+         So:
+          - Call hashCode()
+          - Compress it into an index
+          - Put value in that bucket
+        Step 2: equals() - "Is This REALLY The Same Person"
+        Now imagine two students:
+          John(red shirt)
+          John(blue shirt)
+          - They both might produce the same locker number (hash). This is called Hash Collision
+          - Two different keys - same bucket
+
+          - Inside that locker, Java keeps a list of entries
+          When retrieving: map.get("John")
+          Java:
+             - Finds locker using hashCode()
+             - Goes through all entries inside
+             - Uses equals() to find exact match
+             So:
+              - hashCode() finds the locker
+              - equals() finds the exact key inside
+
+        🧠 First: What Happens If You Don’t Override Anything?
+             - Every class in java automatically extends: Object
+             - This means you automatically inherits hashCode(), equals(Object obj)
+        🏠 Default equals() — What Does It Actually Do?
+             - The default equals() from Object is basically: return this == obj;
+             == for objects means:
+               It checks whether two ref are pointing to the exact same memory location
+        🧠 Now hashCode() — The Default One
+             - Default hashCode() from Object is usually based on:
+             - Memory address (or something derived from it)
+        🚀 When You Override equals() and hashCode() - Java ignores memory comparison;
+        - If you do not override equals/hashCode:
+                                               - ur object identity = memory identity
+                                               - if you do: object identity = business identity
+
+        🛠 The Golden Rule
+            - If two objects are equal a.equals(b) == true, Then they MUST have a.hashCode() == b.hashCode()
+            ALWAYS ~ else the HashMap will break
+
+        🚀 What Happens Inside HashMap (Modern Java)
+             - In Java 8+:
+                         - Buckets start as LinkedLists
+                         - If too many collisions happen (>= 8 entries)
+                         - It converts into a Red-Black Tree
+             Because LinkedList search = O(n) , Tree search = O(log n), that's why HashMap is Average: O(1), Worst case
+             O(log n)
+
+        💥 Interview-Level Understanding
+             - What happens if you override equals() but not hashCode()?
+                 - Equal objects may go to different buckets
+                 - HashMap lookup fails
+                 - Violates contract
+             - Can Two unequal objects have the same hashCode?
+                 - Yes, that's a collision and its allowed, but two equal can't have different hashCode, this breaks
+                 the hashMap
+
+        hachCode() - find bucket, equals() - find exact key
+        HashMap always use hashCode first then equals but not the other way around
+
