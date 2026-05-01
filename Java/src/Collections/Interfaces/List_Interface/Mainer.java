@@ -1,8 +1,13 @@
 package Collections.Interfaces.List_Interface;
 
+import java.util.*;
+
 public class Mainer {
-    public void main(String[] args) {
-        int[] nums = {2, 3, 5};
-//        List<List<Integer>> list = List.of(nums); // this is invalid
+    public static void main(String[] args) {
+        List<String> names = new ArrayList<>(List.of("John", "Muriithi")); // this is thread
+
+        for (String name : names) {
+            System.out.println(name);
+        }
     }
 }

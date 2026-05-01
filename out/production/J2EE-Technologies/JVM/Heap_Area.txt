@@ -1,0 +1,40 @@
+          Notes on Heap Area ( Memory part in the JVM )
+
+            - A heap is a place in memory where objects and class instances are stored during runtime.
+            - It is shared among all threads it is managed by the GC
+
+            Characteristics of Heap Area
+
+             1. Runtime Memory Allocation
+                The heap is used for dynamic memory allocation. Whenever you create an object using new, memory is allocated
+                from the Heap.
+
+             2. Shared among all threads in Jvm
+                This makes synchronization important when multiple threads access shared objects
+
+             3. Managed by GC
+                Java automatically manages heap memory using the GC. When an object is no longer referenced, it becomes
+                eligible for garbage collection
+
+             4. Divided into Generation: To optimize GC, the heap is divided into parts;
+                ~ Young Generation - The area within the heap where new objects the generally allocated
+                ~ Old Generation - The area within the heap where long-lived objects are stored after surviving multiple
+                                   GC cycles
+                ~ Permanent Generation - It stores meta-data about classes and methods
+                ~ Survivor Space -  It is a part of heap memory Young Generation where objects that survive garbage
+                                    collection in the Eden Space are moved.
+                ~ Code Cache - It is the special memory outside the heap where JVM stores optimized code to make programs run faster.
+
+
+          Components of Objects in Heap
+             When an object is created in the heap, it's not just the instance variables that consume memory.
+             Each object has an internal structure managed by the JVM. Here's what each object typically contains:
+               ~ Object Header - Stores metadata such as identity hash code, garbage collection (GC) age and
+                                 synchronization (lock) information. It helps the JVM manage the object internally.
+               ~ Instance Variables - Includes all primitive fields (like int, char) and references to other objects.
+                                      This is the part of the object that stores the actual data defined in your class.
+               ~ Padding / Alignment - JVM adds padding to maintain proper memory alignment, improving access speed and
+                                   ensuring that object sizes are aligned to machine-word boundaries (like 8 or 16 bytes).
+
+
+

@@ -1,0 +1,23 @@
+        1. Design this:
+
+            A system that supports multiple payment methods (Mpesa, Card, Bank)
+
+        Question:
+
+            How would you structure it using OOP?
+            Where do you use:
+                abstraction
+                polymorphism
+                composition
+
+                🧪 Now I challenge you
+
+                Modify this design to support:
+
+                👉 Logging every payment
+                👉 Validating amount before payment
+                👉 Retry mechanism on failure
+
+                Without breaking existing classes.
+
+

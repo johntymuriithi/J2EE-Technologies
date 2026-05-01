@@ -1,0 +1,61 @@
+ 1. When Inheritance is actually correct
+    1. True IS-A relationship
+       - A child is a strict subtype of the parent
+
+    2. Behavior is fully compatible
+       - Child must not break expectations of parent
+         if parent says fly, child should not walk
+
+    3. Stable hierarchy
+       - Inheritance works best when
+         ~ the domain doesn't change much
+         ~ Behavior ir predictable
+
+ 2. Why Inheritance breaks systems
+    1. Tight coupling
+       class MpesaPayment extends BasePayment
+        👉 If BasePayment changes → all subclasses break
+
+    2. Fragile base class problem
+       ~ Small change in parent → unexpected bugs in children
+
+    3. Inflexibility
+       - You can't combine behaviors easily
+       - You want: Logging + Retry + Validation
+       class RetryLoggingMpesaPayment extends MpesaPayment = Explosion of classes
+
+    4. Wrong abstraction over time
+       - What starts as: class Payment Becomes class PaymentWithRetryAndLoggingAndAudit
+       👉 Becomes garbage over time
+
+ 3. Why Composition wins
+    Composition says: "I don't inherit behavior -- I assemble it"
+    - 👉 You build behavior dynamically
+
+ 🧠 Key mental shift
+    Inheritance:
+     “What AM I?”
+
+    Composition:
+     “What do I USE?”
+
+    | Aspect      | Inheritance ❌ | Composition ✅ |
+    | ----------- | ------------- | ------------- |
+    | Flexibility | Low           | High          |
+    | Reusability | Limited       | High          |
+    | Coupling    | Tight         | Loose         |
+    | Scalability | Poor          | Excellent     |
+
+ Use inheritance when:
+     True IS-A relationship
+     Stable hierarchy
+     Shared behavior is consistent
+ Prefer composition when:
+     Behavior may change
+     You need flexibility
+     You want reusable building blocks
+
+- Inheritance should be used only when there is a true IS-A relationship and stable shared behavior.
+ However, it often leads to tight coupling and inflexible designs. Composition is preferred because it allows
+ assembling behavior dynamically, promotes loose coupling, and avoids class explosion. For example, retry and logging
+ are better implemented using composition rather than subclassing payment types

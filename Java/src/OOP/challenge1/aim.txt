@@ -1,0 +1,45 @@
+ 1. Abstraction
+    - We defined what should happen, not how it happens
+    ~ Expose behavior, hide implementaion details
+
+ 2. Runtime Polymorphism
+    - Same interface, different behavior at runtime
+    ~ Write flexible systems that can switch behavior dynamically
+
+ 3. Composition
+    - Combined behaviors instead of inheriting
+    ~ Build systems by assembling smaller components
+
+ 4. Decorator Pattern
+    - Add behavior dynamically without changing existing code
+
+    This is used heavily in:
+      Spring Security
+      Middleware
+      HTTP filters
+
+ 5. Open/Closed Principle
+    "Open for extension, closed for modification"
+
+ 6. Single Responsibility Principle ( Needs mastery )
+    "One class" = one reason to change
+
+ 7. Separation of Concerns
+    "Different responsibilities live in different layers/componets"
+
+ 8. Stateless Design  ( Needs Mastery )
+    - Services should be stateless
+    "Avoid shared mutable state to endure scalability and thread safety"
+
+ 9. Interface-driven design
+    - Coding against an interface not concrete classes
+    "Depend on abstractions, not implementations"
+
+ 10. Strategy Pattern
+     "Encapsulate interchangeable behaviors"
+
+ 11. Subtype polymorphism (runtime polymorphism)
+     “In Java, an interface can be used as a reference type, and any class that implements
+     it can be assigned to that reference.”
+
+ “We implement the interface to stay substitutable, and use composition to reuse and extend behavior.”

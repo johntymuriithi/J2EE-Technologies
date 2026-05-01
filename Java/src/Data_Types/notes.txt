@@ -1,0 +1,28 @@
+         Notes on Java Data Types
+
+         1. Primitives Data Types (Value Types)
+            - They are predefined by the language and identified by reserved keywords
+            - Stored directly as values
+            - They are in Java:- byte, int, long, float, double, char, boolean, short
+
+            Key Properties;
+             - Stored in stack (if local)
+             - Passed by value
+             - Faster than objects
+             - No methods(not objects)
+
+         2. Reference Types
+            - Are variables that store the memory address(reference) of an object rather thatn the actual data itself
+            - default value is null if a variable is declared but not iniatiazed
+            - Classes, Arrays, Interfaces, Enums, String
+            - Variable stores reference
+            - Object stored in heap
+            - Can be null
+            - Passed as copy of reference
+
+
+         NB - Java is 100% pass-by-value
+
+         In Java, primitives store actual values (typically on the stack), while objects are stored in the heap and
+         accessed via references. Java uses pass-by-value, meaning even object references are copied. Memory is managed
+         automatically via garbage collection, and special optimizations like the String Pool improve performance.

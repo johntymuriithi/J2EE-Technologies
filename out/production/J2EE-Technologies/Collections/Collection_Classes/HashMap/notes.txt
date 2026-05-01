@@ -78,4 +78,8 @@
 
         hachCode() - find bucket, equals() - find exact key
         HashMap always use hashCode first then equals but not the other way around
+        NEVER use mutable objects as HashMap keys.
+
+        🧠 Big Picture First ( HashMap Internals )
+
 

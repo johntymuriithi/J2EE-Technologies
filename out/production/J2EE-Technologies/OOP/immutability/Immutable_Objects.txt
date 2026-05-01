@@ -1,0 +1,22 @@
+Rules for immutability
+ 1. Make class final
+ 2. Male fields private final
+ 3. Initialize via constructor
+ 4. No setters
+ 5. Return objects instead of modifying
+ 6. Defend against mutable fields (advanced)
+
+🔥 Why immutability matters (real-world)
+    Thread-safe by default
+    Safe caching
+    No accidental side effects
+    Easier debugging
+
+====================================-------------------------------==========================
+Defend against mutable fields
+ 🔥 This is the issue:
+     - You exposed your internal state by reference
+ If your field is mutable, never expose it directly
+
+Defending against mutable fields means preventing external code from modifying an object’s internal state by returning
+copies of mutable objects or copying them during construction. This preserves encapsulation and ensures immutability.

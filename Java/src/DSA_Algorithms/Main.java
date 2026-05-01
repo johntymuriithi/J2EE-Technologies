@@ -1,4 +1,4 @@
-package Algorithms;
+package DSA_Algorithms;
 
 // let do binary search
 

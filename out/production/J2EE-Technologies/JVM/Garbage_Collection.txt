@@ -1,0 +1,44 @@
+                Notes on Garbage Collection
+
+                - GC is an automatic memory management process that helps Java programs run efficiently.
+
+                 Working of Garbage COLLECTION
+
+                  ~ It identifies which objects are still in use (referenced) and which are not in use (unreferenced).
+                  ~ It removes the objects that are unreachable (no longer referenced).
+                  ~ The programmer does not need to mark objects to be deleted explicitly. Garbage collection is implemented within the JVM.
+
+                 Two Types of Garbage Collection
+
+                  ~ Minor / Incremental GC -  This occurs when unreachable objects in the Young Generation heap memory are removed.
+                  ~ Major / Full GC - This happens when objects that survived minor garbage collection are removed from
+                           the Old Generation heap memory. It occurs less frequently than minor garbage collection.
+
+                 Concepts on GC
+                  1. Unreachable Objects
+                      An object becomes unreachable if it does not contain any reference to it.
+                  2. Making objects eligible for GC
+                      An object is said to be eligible for gc if it is unreachable
+
+                  Ways to make an object eligible for GC
+                   ~ Nullifying the reference variable (obj = null).
+                   ~ Re-assigning the reference variable (obj = new Object()).
+                   ~ An object created inside the method (eligible after method execution).
+                   ~ Island of Isolation (Objects that are isolated and not referenced by any reachable objects).
+
+                  3. Requesting Garbage Collection
+                     Once an object is eligible for garbage collection, it may not be destroyed immediately.
+                     The garbage collector runs at the JVM's discretion and you cannot predict when it will occur.
+
+                     Using System.gc() or Runtime.getRuntime().gc()
+
+                  4. The finalize() Method (Deprecated in Java 9+)
+                     Before destroying an object, the garbage collector calls the finalize() method to perform
+                     cleanup activities. This method is defined in the Object class
+
+                     Note;
+                     ~ finalize() method is deprecated since Java 9 because it is unpredictable and can cause performance issues.
+                     ~ Alternatives like try-with-resources or explicit cleanup methods are preferred.
+                     ~ The garbage collector calls finalize() at most once per object.
+                     ~ Exceptions thrown in finalize() are ignored.
+

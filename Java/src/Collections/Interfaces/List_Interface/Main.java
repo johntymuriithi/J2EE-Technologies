@@ -6,7 +6,7 @@ package Collections.Interfaces.List_Interface;
  *             public interface<E> extends Collection<E>
  *
  *             A List is:
- *                 An ordered, index-based, duplicate-allowing collection (these are its feartures)
+ *                 An ordered, index-based, duplicate-allowing collection (these are its features)
  *
  *             The Equality Contract of List
  *

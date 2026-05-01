@@ -13,6 +13,12 @@
          - When capacity is reached: Allocate new bigger array, Copy all elements to new Array, Replace old array ref
             i.e newCapacity = oldCapacity + (oldCapacity >> 1)
 
-         - Provides Cache locality - Means how well your program uses the CPU cache by accessing memeory that is
+         - Provides Cache locality - Means how well your program uses the CPU cache by accessing memory that is
          physically close together
+
+         Programming to an interface
+           - List<String> list = You’re saying: “I don’t care about the concrete implementation, as long as it behaves like a List.”
+
+         Interface-Based Polymorphism
+            - Java allows a reference of an interface type to point to any implementing class instance
 

@@ -1,0 +1,12 @@
+                🧠 8. What interviewers actually test
+
+                    They don’t care if you can define OOP.
+
+                    They test if you can:
+
+                    1. Design clean systems
+                    Can you avoid tight coupling?
+                    Can you separate concerns?
+                    2. Handle change
+                    Add new features without breaking old code?
+                    3. Think in behavior, not data

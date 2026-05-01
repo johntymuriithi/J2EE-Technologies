@@ -5,7 +5,7 @@ import java.util.*;
 class Lister {
     static void displayer() {
         List<String> list = new LinkedList<>();
-        list = new ArrayList<>();  // they both share the same interface - data type if you like
+        list = new ArrayList<>(); // works coz of interface-based polymorphism
 
         List<String> names = List.of("John", "Peter", "Kamau"); // this is unmodiffieble
         List<Integer> nums = Collections.unmodifiableList(Arrays.asList(10 ,20, 40, 50)); // Also unmodifiable

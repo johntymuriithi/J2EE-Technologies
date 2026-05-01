@@ -1,0 +1,45 @@
+     Notes on OOP in java
+
+     OOP is about:
+                 - Modeling real-world behavior using objects that encapsulate data + rules
+                 Not about classes and objects
+                 But "who owns data, who is allowed to change it and how systems evolve"
+
+     1. Encapsulation
+        - It refers to bundling the data (variables) and methods (functions) that manipulate the data into a single unit
+        known as a class (logical construct)
+        - mechanism that binds together code and data it manipulates and keeps both safe from outside interference and misuse
+        - Purpose of a class is to encapsulate complexity
+        - Encapsulation is about protecting invariants, not just "making fields private"
+
+        Benefits:
+                - Data hiding
+                - Increased Flexibility
+                - Improved Maintainability
+
+        NB: Invariant - is a condition or property that must always remain true during the execution of a program/for a specific object
+
+     2. Abstraction
+        - Is the concept of hiding the complex implementation details and showing only the essential features of the object
+        - It allows one to focus on what the object does instead of how it does it
+        - It can be achieved using abstract classes and interfaces
+
+     3. Inheritance
+        - Is a mechanism wherein a new class (subclass) inherits the properties and behavior (methods) of an existing class (superclass)
+        - Use inheritance only when There is a true "is-a" relationship. e.g Car is a Vehicle
+        - Prefer composition over inheritance
+
+     4. Polymorphism ( many forms )
+        - Is a feature that allows one interface to be used for a general class of actions
+        - One interface, many methods
+
+        Types
+         1. Compile-time polymorphism (method overloading)
+         2. Runtime polymorphism (method overriding)
+
+
+     NB: 1. Each class should have one responsibility
+         2.Shared mutable state = race conditions + bugs
+         3.
+
+
