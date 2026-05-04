@@ -1,0 +1,85 @@
+- High-level modules should not depend on low-level modules; both should depend on abstractions
+- Depend on abstractions, not concrete implementations
+- High-level business logic should depend on abstractions rather than concrete implementations, enabling flexibility
+and decoupling through interfaces and dependency injection
+
+- High-level modules should depend on abstractions, not concrete classes
+  e.g private final PaymentService payment;
+      ~ depends on interface
+      ~ not on MpesaPayment
+
+  Rationale Behind DI
+   e.g PaymentService payment = new MpesaPayment();
+       Problem:
+          ~ Your class decides what dependency to use
+          ~ Tight coupling to MpesaPayment
+          ~ Your class is doing two jobs
+             1. Business logic
+             2. Dependency Injection ( manual instantiation (tight coupling) )
+
+   ~ "Provide dependencies from outside instead of creating them inside"
+   ~ “Classes should not create their dependencies—they should receive them.”
+   ~ "The responsibility of creating objects should belong to a composition root (or a container), not the business classes."
+
+   🧠 What is a composition root?
+       👉 A single place where:
+           All objects are created
+           All dependencies are wired together
+
+   🧠 That’s where DI containers come in
+   👉 In large systems, we don’t use main directly
+
+   We use a container (like Spring)
+       🔥 What the container does
+       Creates objects
+       Resolves dependencies
+       Injects them automatically
+
+   @Service
+   class A {
+       private final B b;
+
+       public A(B b) {
+           this.b = b;
+       }
+   }
+   👉 Spring:
+       Finds B
+       Creates it
+       Injects it into A
+
+================================----------------------------------===========================
+
+   | Concept   | Meaning                            |
+   | --------- | ---------------------------------- |
+   | DI        | Dependencies provided from outside |
+   | DIP       | Depend on abstractions             |
+   | Container | Manages object creation            |
+   | Injection | Passing dependencies in            |
+
+  Benefits of DI
+   ~ Swap implementations easily
+   ~ Easy testing
+   ~ Loose coupling
+
+  🧠 Step 8: The real problem DI solves at scale
+      Without DI:
+          Every class creates dependencies
+          Hard to change
+          Hard to test
+          Hard to scale
+
+      With DI:
+          Centralized object creation
+          Flexible system
+          Easy to extend
+
+  DI is NOT about constructors
+  DI is about who controls object creation
+
+  Types of DI;
+    1. Constructor Injection ( Best )
+    2. Setter Injection
+    3. Field Injection ( avoid in java)
+
+

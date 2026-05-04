@@ -1,0 +1,33 @@
+- Software should be open for extension, but closed for modification
+
+❌ Bad design
+
+class PaymentService {
+    void pay(String type) {
+        if (type.equals("MPESA")) { }
+        else if (type.equals("CARD")) { }
+    }
+}
+
+🧠 Problem
+    Every new payment type = modify existing code ❌
+
+✅ Good design
+interface PaymentService {
+    void pay();
+}
+
+class MpesaPayment implements PaymentService { }
+class CardPayment implements PaymentService { }
+
+🧠 Why this works
+    👉 You extend behavior by adding new classes
+    👉 You do NOT modify existing code
+
+🔥 Mental model
+    OCP = “Add new features by adding new code, not changing old code”
+
+“OCP means a system should allow new behavior to be added through extension, typically using interfaces and
+polymorphism, without modifying existing, tested code.”
+
+OCP is not just about behavior—it’s also about who controls object creation

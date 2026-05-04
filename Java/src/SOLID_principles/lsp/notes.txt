@@ -1,0 +1,39 @@
+- Subtypes must be fully substitutable for their parent types
+- Can I replace parent with child without breaking behavior?
+
+❌ Broken example
+
+class Bird {
+    void fly() { }
+}
+
+class Penguin extends Bird {
+    void fly() {
+        throw new UnsupportedOperationException();
+    }
+}
+
+🧠 Problem
+Bird b = new Penguin();
+b.fly(); // 💥 crash
+
+👉 Subclass breaks expectations
+
+🔥 Real meaning
+    If you use a parent type, any child must behave correctly without surprises
+
+✅ Correct design
+interface Bird { }
+
+interface FlyingBird {
+    void fly();
+}
+
+class Sparrow implements FlyingBird { }
+class Penguin implements Bird { }
+
+🔥 Mental model
+ LSP = “Don’t break the contract of the parent type”
+
+“LSP means that subclasses should be usable wherever their parent class is expected without altering correctness or
+behavior, ensuring substitutability.”

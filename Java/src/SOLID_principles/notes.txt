@@ -1,0 +1,22 @@
+| Principle | What it really controls    |
+| --------- | -------------------------- |
+| SRP       | class responsibility       |
+| OCP       | adding new behavior safely |
+| LSP       | inheritance correctness    |
+| ISP       | interface design quality   |
+| DIP       | dependency structure       |
+
+
+All SOLID is really just:
+     "How to avoid tight coupling and uncontrolled change in a system"
+
+     - Bad interface design (ISP violation) often leads to LSP violations
+     - ISP helps PREVENT LSP violations
+       But it is NOT the same thing
+
+SOLID principles are not independent rules
+    👉 They reinforce each other
+
+    Bad ISP → breaks LSP
+    No DIP → breaks OCP
+    No SRP → everything collapses

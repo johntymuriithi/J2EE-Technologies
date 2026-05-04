@@ -1,0 +1,25 @@
+🧪 Final challenge (important)
+
+Design a class for:
+
+👉 BankAccount
+
+Rules:
+
+balance cannot go negative
+deposits and withdrawals must be validated
+no direct balance setter
+must be safe under concurrent access conceptually
+
+
+Question (think deeply)
+
+How would you redesign this to be:
+
+👉 immutable AND thread-safe WITHOUT synchronization
+
+That answer is the bridge to:
+
+Functional design
+High-performance systems
+Advanced Java design

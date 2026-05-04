@@ -1,0 +1,39 @@
+- A class should have one reason to change
+- Not one task. Not one method : One repsonsibility axis
+
+Bad Design:
+class PaymentService {
+
+    void pay() { }
+
+    void sendEmailReceipt() { }
+
+    void saveToDatabase() { }
+}
+
+🧠 Problem
+This class changes for:
+    payment logic changes
+    email changes
+    database changes
+
+    👉 3 reasons to change ❌
+
+✅ Correct design
+    class PaymentService {
+        void pay() { }
+    }
+
+    class EmailService {
+        void sendReceipt() { }
+    }
+
+    class PaymentRepository {
+        void save() { }
+    }
+
+🔥 Mental model
+    SRP = “Don’t mix business logic, persistence, and communication in one class”
+
+“SRP means a class should have only one reason to change. If a class handles payment, email, and persistence,
+it violates SRP because each responsibility changes independently.”

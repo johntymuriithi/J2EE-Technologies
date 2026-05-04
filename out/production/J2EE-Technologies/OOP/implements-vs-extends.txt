@@ -1,0 +1,51 @@
+  Notes on extends and implements
+
+  Both extends and implements are about reusing or promising behavior, but they do it in fundamentally different ways
+
+  1. extends = Inheritance (is-a relationship)
+     "I am a specialized version of this class"
+
+     ⚠️ Limitation
+         Java allows only one class inheritance
+         Strong coupling
+
+  2. implements = Contract (can-do relationship)
+     "I promise to provide this behavior"
+
+     ⚠️ Key advantage
+        👉 A class can implement MANY interfaces
+
+
+  🧠 4. Real mental model
+      extends
+        👉 “I inherit identity + behavior”
+
+      Example:
+        Dog is an Animal
+
+      implements
+        👉 “I agree to follow a rule”
+
+      Example:
+        MpesaPayment follows PaymentService contract
+
+  ⚠️ 6. Common interview trap
+      class A {}
+      class B {}
+
+  ❓ Can B extend A and implement interface X?
+
+      👉 YES:
+        class B extends A implements X
+
+“extends is used for class inheritance where a subclass inherits behavior and state from a parent class, representing
+an IS-A relationship. implements is used when a class agrees to fulfill a contract defined by an interface,
+representing a CAN-DO relationship and enabling loose coupling and multiple implementations.”
+
+“We use implements because it allows us to depend on abstractions rather than concrete classes. This creates loose
+coupling and makes the system flexible. ( “because it enables loose coupling and allows multiple interchangeable implementations”)"
+
+| Concept    | Meaning                          |
+| ---------- | -------------------------------- |
+| extends    | IS-A (tight relationship, reuse) |
+| implements | CAN-DO (contract, flexibility)   |

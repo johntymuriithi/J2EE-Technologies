@@ -1,0 +1,160 @@
+🧠 Method Overloading vs Overriding
+
+   Overloading -  "How can I do the same thing in different ways"
+   Overriding - "How should this object behave differently"
+
+   1. Method Overloading
+      - Same method name, different parameters - resolved at compile time ( Compiler decides which method to call )
+      - It exists for Convenience + readability
+      - Same name, different inputs
+
+      Key Limitations
+       - It does NOT change behavior dynamically
+       - It is NOT polymorphism at runtime
+
+   2. Method Overriding
+      - A subclass changes the behavior of a parent method
+      - Resolved at Runtime
+      - JVM decides which method to call based on actual object type
+      - It exists to allow behavior substitution
+      - Same method, different behavior
+
+   Overloading = same name, different parameters (compile time)
+   Overriding = same signature, different behavior (runtime)
+
+   | Concept     | Where you see it                   |
+   | ----------- | ---------------------------------- |
+   | Overloading | Constructors, utility methods      |
+   | Overriding  | Spring services, strategy patterns |
+
+
+   “Method overloading is compile-time polymorphism where multiple methods share the same name but differ in parameters,
+    mainly used for convenience. Method overriding is runtime polymorphism where a subclass changes the behavior of a
+    parent method with the same signature, enabling dynamic dispatch and flexible system design.”
+========================================--------------------------------=================================
+    Compile-time vs Runtime method resolution
+    From Example Done:
+
+    Step 1: Compile-time decision (Overloading)
+            The compiler looks at:
+            A obj = new B();
+            obj.print("hello)";
+
+            It sees: Reference type = A, Available methods in A = print(Object), so it chooses print(Object)
+            ✔️ This is overloading resolution (compile-time)
+
+    Step 2: Runtime (Overriding check)
+
+            Now JVM asks:
+            “Does class B override print(Object)?”
+            👉 Answer: ❌ NO
+
+            B has: void print(String s) -> That's not the same signature
+
+            Overloading is resolved using the reference type at compile time, not the object type at runtime
+
+    “The method print(Object) is called because method overloading is resolved at compile time using the reference type,
+    which is A. Since B does not override print(Object), the parent class method is executed at runtime.”
+
+===============================-------------------------------------------================================
+B obj = new B();
+obj.print("hello");
+
+🔥 What happens
+Step 1: Compile-time (overloading resolution)
+
+The compiler sees:
+
+Reference type = B
+
+Available methods in B:
+
+void print(String s)
+void print(Object o) // inherited from A
+
+👉 Now it chooses the most specific match
+
+"hello" is a String
+String matches print(String) better than print(Object)
+
+✔️ So it picks:
+
+print(String)
+Step 2: Runtime
+B has print(String)
+So it executes:
+String
+
+
+🔥 Key insight (this is what interviewers want)
+    When overloading, Java picks the most specific method at compile time based on the reference type.
+
+🧠 Final mental model
+Overloading → compile-time + reference type ( Overloading depends on what the compiler knows (reference type )
+Overriding → runtime + object type ( Overriding depends on what the object really is )
+
+Java chooses which method signature to call at compile time (overloading),
+but chooses which implementation to execute at runtime (overriding).
+
+“Overloading is resolved at compile time using the reference type, meaning the compiler decides which method signature
+to call. Overriding is resolved at runtime using the actual object type, allowing dynamic method dispatch and behavior substitution.”
+
+Overloading → decided by compiler (reference type)
+Overriding → decided by JVM (object type)
+
+================================--------------------------===============================
+“Compile-time resolution means the compiler determines which method signature to call based on the reference type and
+parameters before execution. Runtime resolution means the JVM determines which actual implementation to execute based
+on the object’s real type during program execution.”
+
+⚡ Ultra-simple analogy
+    Compile time
+
+    👉 “Which phone number do I dial?”
+
+    Runtime
+
+    👉 “Who actually picks up the call?”
+
+🔥 Why Java does this (deep insight)
+    Because:
+
+    Overloading ( Planning phase — before the program runs ) = static decision (safe, fast)
+    Overriding ( Execution phase — when things are real ) = dynamic behavior (flexible, powerful)
+
+Overloading chooses the most specific ( match ) applicable method at compile time
+
+“Dynamic dispatch means that method execution is determined at runtime based on the actual object type, not the
+reference type. It allows the same method call to result in different behavior depending on the object instance.”
+
+==================================------------------------------------------=============================
+1. Method signature - method name + parameter type ( in order )
+    Excluding:
+             - return type
+             - parameter names
+             - modifiers
+    e.g void print(String s) = print(String)
+        String print(String s, Object o, int number) = print(String, Object, int)
+
+    They are used for:
+        Method overloading resolution
+        Compile-time binding
+        JVM method lookup
+
+2. Parameters vs Arguments
+   Parameters - Variables defined in the method declaration e.g void great(String name) = name = parameter
+   Arguments - Actual values passed when calling the method e.g greet("John")  - "John" = argument
+
+   This directly affects:
+       Overloading resolution
+       Type matching
+       Compile-time behavior
+
+3. Method declaration - defines a method without proving a body
+4. Method definition - now with body ( implementation/ behavior )
+
+
+
+
+
+

@@ -1,0 +1,11 @@
+| Principle | What it really controls    |
+| --------- | -------------------------- |
+| SRP       | class responsibility       |
+| OCP       | adding new behavior safely |
+| LSP       | inheritance correctness    |
+| ISP       | interface design quality   |
+| DIP       | dependency structure       |
+
+
+All SOLID is really just:
+     "How to avoid tight coupling and uncontrolled change in a system"
