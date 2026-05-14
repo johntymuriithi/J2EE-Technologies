@@ -1,0 +1,45 @@
+  ~ Composition = structure (has-a relationship)
+  ~ Dependency Injection = how dependencies are provided
+
+
+  1. Composition (Has-A relationship)
+     ~ A class is build using other objects
+
+     class Engine {}
+
+     class Car {
+         private Engine engine = new Engine(); // composition
+     }
+
+     ~ Focuses on design structure
+     ~ Answers: "What objects does this class contain"
+
+  2. Dependency Injection (HOW dependency is given)
+     ~ Don't create dependencies inside -- receive them from outside
+
+     class Car {
+         private final Engine engine;
+
+         public Car(Engine engine) {
+             this.engine = engine; // injected
+         }
+     }
+
+     ~ Focuses on object creation/control
+     ~ Answers "Who creates and provides this dependency"
+
+     DI is a way to implement composition cleanly
+
+     🔥 Real insight
+         Composition answers: “What do I use?”
+         DI answers: “Who gives it to me?”
+
+     “Composition is a design principle where a class is built using other objects (has-a relationship).
+     Dependency Injection is a pattern that provides those dependencies from outside rather than creating them
+     internally. DI is often used to implement composition in a loosely coupled way.”
+
+     DI does not replace composition.
+     DI improves composition by removing tight coupling.
+
+     Composition is about relationships between objects.
+     DI is about control of object creation.

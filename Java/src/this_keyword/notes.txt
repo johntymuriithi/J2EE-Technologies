@@ -1,0 +1,5 @@
+   ~ this keyword - Is a reference to the current object. It is used within an instance method or constructor to refer
+                    to the object that is currently being constructed in a constructor
+   ~ It is used to distinguish between instance variables (fields) and parameters or local variables with the same name
+   ~ Used also to pass the current object as a parameter to other methods, return the current object and invoke other
+     constructors in a constructor

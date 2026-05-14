@@ -1,0 +1,63 @@
+  How does a HashMap work internally
+
+      Imagine: map.put("John", 45);
+      Later: map.get("John");
+
+      How can Java find "John" FAST without checking every element?
+      Without Hashing, Java would scan one by one: Mary? no, Peter? no, John? yes --> O(n) time, slow for millions of records
+
+      Solution: Hashing
+      Instead of searching everything:
+      Java computes: hashCode("John") say = 99932, the java transforms it into a bucket index, bucket = hash % arraySize
+                 99932 % 16 = 7, Store "John" in bucket 7;
+
+  Internal Structure of HashMap
+    At core: HashMap = array of buckets
+    Think
+       0 →
+       1 →
+       2 →
+       3 →
+       4 →
+       5 →
+       6 →
+       7 → ("John",95)
+       8 →
+    HashCode answers "Which bucket should this object go into
+
+  What happens during put()
+    map.put(key, value)
+
+     STEP 1 -- Compute hashCode
+        hash = key.hashCode()
+
+     STEP 2 -- Find, bucket = hash % capacity
+
+     STEP 3 -- Go to bucket
+        bucket 7
+
+     STEP 4 -- Compare keys using equals()
+        Because bucket may already contain objects.
+        Java checks: existingKey.equals(newKey)
+
+     🔥 VERY IMPORTANT
+         hashCode DOES NOT determine equality
+
+         It only determines:
+            where to search
+         equals determines actual equality
+            is this truly the same key?
+
+  Collision
+    Two different objects can produce same bucket
+      "John" → bucket 7
+      "Mike" → bucket 7
+
+  🧠 How Java handles collisions
+
+      Bucket stores multiple entries.
+        Internally:
+          bucket 7 →
+             ("John",95)
+             ("Mike",88)
+      (Java uses linked list / tree internally depending on size)
