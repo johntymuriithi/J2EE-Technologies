@@ -9,15 +9,15 @@
  *                    Collection<E> - The Core Contract
  *                     public interface Collection<E> extends Iterable<E>
  *
- *                     ~ This interface defines what it means to be a collection in Java
+ *                     ~ This interface defines (defines contract ) what it means to be a collection in Java
  *                     ~ It does not define Ordering, Indexing, Key/value semantics ~ These are added by subinterfaces.
  *
  *                     Categories of Methods in Collection
  *
  *                     ~ Query Operations
  *                        int size() - Number of elements
- *                        boolean isEmpty - Checks if empty, prefer it.
- *                        boolean contains(Object o) - Checks if contains, reliers on equals, if equals is broken - contains() breaks.
+ *                        boolean isEmpty - Checks if empty, prefer it. (though it is expensive than size() == 0 )
+ *                        boolean contains(Object o) - Checks if contains, rely  s on equals, if equals is broken - contains() breaks.
  *                        Iterator<E> iterator() - Returns a fail-fast iterator. if collection is structurally modified
  *                        outside iterator --> ConcurrentModificationException
  *

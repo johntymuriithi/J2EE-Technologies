@@ -1,0 +1,57 @@
+    1. What problem do equals() and hashCode() solve?
+       Core Idea ~ They define how java decides
+
+       "Are these two objects logically the same?"
+       "Where should I store/find this object in hash-based structures?"
+
+       | Method       | Question it answers                      |
+       | ------------ | ---------------------------------------- |
+       | `equals()`   | Are these two objects equal in meaning?  |
+       | `hashCode()` | Which bucket should this object go into? |
+
+    2. Default behavior
+       Every class inherits from Object;
+
+       class Object {
+            boolean equals(Object o) { return this == o; }
+            int hashCode() { return memory_address; }
+       }
+
+       Default behavior = identity comparison
+
+    3. Why override them?
+       Because in real systems we care about logical equality, not memory identity
+
+    4. equals() contract
+        Rules:
+            1. Reflexive
+            2. Symmetric
+            3. Transitive
+            4. Consistent
+            5. Null-safe
+
+        If two objects are equal, they must behave consistently everywhere in the system
+
+    5. hashCode()
+       Step 1: hashCode decides bucket
+               map.put(key, value)
+               ~ bucket = hashCode(key)
+       Step 2: equals confirms match
+               ~ Inside bucket
+                 if (equals(existingKey)) --> replace / return
+
+       if equals() is true --> hashCode Must be same
+
+    5. What happens if you Override equals but not hashCode
+        ~ HashSet / HashMap breaks consistency
+
+    Why hashCode exists (performance reason)
+
+    hashCode = Where do I look? O(1) average lookup
+    equals = Is it really the same?
+
+    “equals() defines logical equality between objects, while hashCode() determines the bucket location in hash-based
+    collections. If two objects are equal according to equals(), they must have the same hashCode to maintain consistency
+    in data structures like HashMap and HashSet.”
+
+

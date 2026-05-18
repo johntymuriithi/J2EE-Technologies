@@ -1,0 +1,122 @@
+NB:
+  - DI is not about constructors or setters
+  - It's about who controls dependencies and how safely they are provided
+
+  Types of Dependency Injection
+   1. Constructor Injection ( Best )
+   2. Setter Injection
+   3. Field Injection
+
+   🧱 1. Constructor Injection
+
+         class PaymentProcessor {
+            private final PaymentService payment;
+
+            public PaymentProcessor(PaymentService payment) {
+                this.payment = payment;
+            }
+         }
+
+         - Dependency is provided at object creation
+
+         1. Guarantees required dependencies
+            - You cannot create the object without it
+         2. Enables immutability
+            private final PaymentService payment;
+            ~ cannot change after construction
+            ~ Thread-safe design
+         3. Makes dependencies explicit
+            Anyone reading the class knows:
+             "This class NEEDS PaymentService"
+         4. Best for testing
+            new PaymentProcessor(new FakePayment())
+
+         ⚠️ When NOT to use
+             When dependency is truly optional
+             When object has too many dependencies (design smell)
+
+         🎯 Use when
+            Dependency is mandatory and core to the class behavior
+
+   2. Setter Injection
+        class PaymentProcessor {
+            private PaymentService payment;
+
+            public void setPayment(PaymentService payment) {
+                this.payment = payment;
+            }
+        }
+
+        1. Optional dependencies
+           if (payment != null) {
+             payment.pay();
+           }
+           ~ class can still exist without it
+        2. Late configuration
+           ~ Dependency can be changed after object creation
+
+        ⚠️ Problems (important)
+        ❌ 1. Object can be in invalid state
+            PaymentProcessor p = new PaymentProcessor();
+            p.process(); // 💥 payment is null
+
+        ❌ 2. Mutability
+            👉 Dependency can change unexpectedly
+
+        ❌ 3. Harder to reason about
+            👉 You don’t know if dependency is set or not
+
+        🎯 Use when
+            Dependency is optional or configurable
+
+   3. Field Injection
+      What it is (common in Spring)
+       class PaymentProcessor {
+
+           @Autowired
+           private PaymentService payment;
+       }
+     🔥 Why people use it
+         Less boilerplate
+         Looks clean
+         Spring handles everything
+     ⚠️ Why it’s discouraged (important)
+     ❌ 1. Hidden dependencies
+        👉 You don’t see what the class needs
+     ❌ 2. Hard to test
+        new PaymentProcessor(); // payment is null ❌
+        👉 Requires Spring container
+
+     ❌ 3. Breaks immutability
+        👉 No final
+
+     ❌ 4. Reflection-based injection
+        👉 Happens behind the scenes → less control
+
+     🎯 Use when
+         Almost never in core business logic
+            👉 Sometimes in:
+
+         quick prototypes
+         legacy code
+         framework-managed components
+
+     Constructor injection enforces correct object creation
+     Setter/Field injection allow invalid states
+
+     🧠 Advanced nuance (important)
+         Too many constructor params?
+            A(B b, C c, D d, E e, F f)
+
+         👉 This is NOT a DI problem
+         👉 This is a design problem (violates SRP)
+
+"Constructor injection is preferred because it enforces required dependencies, supports immutability, and improves
+testability. Setter injection is used for optional dependencies, while field injection is generally discouraged due to
+hidden dependencies and reduced testability".
+
+    | Type        | Meaning                                |
+    | ----------- | -------------------------------------- |
+    | Constructor | “I cannot exist without this”          |
+    | Setter      | “I can exist, but may need this later” |
+    | Field       | “Magic injection (less control)”       |

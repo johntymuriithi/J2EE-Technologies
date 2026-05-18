@@ -1,0 +1,17 @@
+    - It is a universal cursor form the java.util package that allows sequential traversal of elements in a collection
+    such as List, Set, Queue.
+    - It supports forward-only iteration and enables safe element removal during traversal without causing
+    ConcurrentModificationException
+    - An iterable is an object capable of returning its elements one and a time allowing you to loop over it
+
+    Ket Methods:
+        hasNext() - Checks if more elements are available
+        next() - Returns the next element: throws NoSuchElementException if none remain
+        remove() - Deletes the last returned element; can be called only once per next() call
+
+    Important Notes:
+        ~ Uni-directional: Only moves forward; for bidirectional traversal, use ListIterator.
+        ~ Fail-fast behavior: Modifying the collection outside the iterator during iteration throws ConcurrentModificationException.
+        ~ var keyword (Java 10+): Can simplify iterator declarations, e.g., var it = list.iterator();.
+
+    This makes Iterator a powerful and safe tool for collection traversal and modification in Java.

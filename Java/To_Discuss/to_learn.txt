@@ -78,10 +78,29 @@ How HashMap + Deque builds LRU cache
 Monotonic Queue pattern (advanced algorithmic use)
 
 HashMaps
+    How resizing works internally
+    Load factor & threshold
+    Why hashCode should use prime numbers
+    Why mutable keys are dangerous
+    HashMap vs ConcurrentHashMap
+    How this connects to distributed systems hashing
+    Explain how HashMap resizes including rehashing, tree bins, and threshold effects
+    ConcurrentHashMap internals (segmented locking, CAS, no global locks)
+    JVM memory model (why visibility + hashing bugs get worse in threads)
 
-How resizing works internally
-Load factor & threshold
-Why hashCode should use prime numbers
-Why mutable keys are dangerous
-HashMap vs ConcurrentHashMap
-How this connects to distributed systems hashing
+    To be fully complete, there are still a few deeper layers:
+
+    1. Java 8+ hash spread optimization
+        Why hash is “spread” before bucket indexing
+        Why power-of-two array sizing matters
+    2. Collision strategy internals
+        When exactly tree bins split back to lists
+        Treeification thresholds in real JVM behavior
+    3. Immutability discipline in distributed systems
+        Why HashMap key mutation becomes production bugs
+        How frameworks enforce immutability patterns
+    4. IdentityHashMap vs HashMap
+        When Java intentionally uses reference equality instead of equals/hashCode
+    5. Real-world concurrency traps
+        race conditions in resize
+        lost updates in concurrent maps

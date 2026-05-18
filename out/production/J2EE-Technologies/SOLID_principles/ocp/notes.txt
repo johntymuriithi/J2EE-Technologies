@@ -29,3 +29,5 @@ class CardPayment implements PaymentService { }
 
 “OCP means a system should allow new behavior to be added through extension, typically using interfaces and
 polymorphism, without modifying existing, tested code.”
+
+OCP is not just about behavior—it’s also about who controls object creation

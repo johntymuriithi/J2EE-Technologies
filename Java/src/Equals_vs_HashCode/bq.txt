@@ -1,0 +1,9 @@
+  1. Effects of not Overriding one ✓
+  2. Effects of Immutability on e/h ✓
+  3. Default vs Overriding ✓
+  4. Collisions states / times
+  5. HashMap / HashSet internals
+  6. Does == essence change at all? ✓
+  7. What is used in default calculation of hash code
+
+  HashSe

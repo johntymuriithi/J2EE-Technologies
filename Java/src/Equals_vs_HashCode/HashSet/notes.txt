@@ -1,0 +1,56 @@
+  HashSet is backed internally by HashMap
+    HashSet uses:
+        hashCode() → find bucket
+        equals() → detect duplicates
+
+  Internally: HashMap<E, Object>
+    HashSet stores: key = ur object, value = dummy object
+
+    set.add(user) --> map.add(user, PRESENT)
+
+===========================================================================================
+    🚨 CASE 1 — Override equals() ONLY
+    Example
+    class User {
+        String email;
+
+        @Override
+        public boolean equals(Object o) {
+            return email.equals(((User)o).email);
+        }
+    }
+
+    No hashCode override.
+
+    Add objects
+    User u1 = new User("a@gmail.com");
+    User u2 = new User("a@gmail.com");
+
+    set.add(u1);
+    set.add(u2);
+    🧠 What happens?
+
+    Default hashCode uses identity.
+
+    So:
+
+    u1 -> bucket 4
+    u2 -> bucket 9
+
+    Different buckets.
+
+    🔥 Result
+
+    HashSet NEVER compares them using equals.
+
+    Because they are in different buckets.
+
+    So BOTH are inserted.
+
+    ❌ Consequence
+
+    Duplicates appear in HashSet.
+
+    Even though equals says they are equal.
+
+================================================================================

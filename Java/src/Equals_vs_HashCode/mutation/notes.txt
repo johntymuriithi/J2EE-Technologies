@@ -1,0 +1,55 @@
+    🧠 Mental model
+
+    Think of HashMap like a library:
+        hashCode = shelf number
+        equals = book title match
+
+    Mutation problem:
+        You move the book’s title AFTER placing it on a shelf.
+
+    Now:
+        library still keeps it on old shelf
+        but future searches look at new shelf
+
+    👉 object becomes unreachable
+
+    💥 Real-world consequences
+        In HashSet:
+            duplicates appear
+            contains() returns false
+            remove() fails
+        In HashMap:
+            key becomes unreachable
+            memory leak-like behavior
+            logical data corruption
+    🚨 This is why:
+    ❗ Keys in HashMap should be immutable
+
+    Examples of SAFE keys:
+
+        String
+        Integer
+        UUID
+
+    🧠 Senior-level rule
+        ~ Any field used in equals() or hashCode() MUST NOT change while the object is used as a key in HashMap or element in HashSet.
+
+    🔥 Best practice
+        Make key objects immutable:
+        final class User {
+            private final String email;
+        }
+
+         No setters.
+
+    🎯 Final summary
+        If you mutate fields used in hashCode() / equals():
+
+        | Structure | Effect                                    |
+        | --------- | ----------------------------------------- |
+        | HashSet   | duplicates, lost elements, failed lookups |
+        | HashMap   | keys become unreachable, get/remove fail  |
+
+    🧠 One-line mastery
+        ~ Mutating hashCode/equals fields breaks the contract between object state and its bucket location,
+        making the object logically “lost” inside the hash structure.

@@ -1,0 +1,26 @@
+    Collection Interface   ( public interface Collection<E> extends Iterable<E>
+  ========================
+
+  - This is the foundation of: List, Set, Queue
+  - an iterable is an object capable of returning its members one at a time, allowing you to loop over it
+  - It is a group of objects
+    ~ It is an interface, not a class
+    ~ It only defines behavior, contracts, operations -- NOT implementations.
+    ~ It defines behavior that all subclasses that extends it can implement
+
+                    Iterable
+                        ↑
+                   Collection
+              ┌────────┼────────┐
+              ↓        ↓        ↓
+             List      Set     Queue
+
+  Why Iterable is parent of Collection
+    - Because collections must support, for (String s : list)
+    - Enhanced for-loop uses iterator() internally
+    - so it becomes:
+        Iterator<String> it = list.iterator();
+
+        while (it.hasNext()) {
+            String s = it.next();
+        }

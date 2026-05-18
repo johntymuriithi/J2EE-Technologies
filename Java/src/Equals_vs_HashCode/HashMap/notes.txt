@@ -1,4 +1,12 @@
+  In HashMap, keys are OBJECT REFERENCES
+    variables of object types hold references,
+    not actual objects
+
   How does a HashMap work internally
+
+    A HashMap depends on BOTH:
+        hashCode() → find bucket
+        equals() → find exact key inside bucket
 
       Imagine: map.put("John", 45);
       Later: map.get("John");
@@ -61,3 +69,37 @@
              ("John",95)
              ("Mike",88)
       (Java uses linked list / tree internally depending on size)
+
+  What Happens during get()
+    map.get("John")
+    1. Compute hasCode, bucket 7
+    2. Search only inside bucket 7
+    3. Use equals(): existingKey.equals(searchKey)
+
+=========================================================================
+    When two values results to the same hashcode:
+    Java replaces the existing one by default
+        1. If you want to prevent a replacement, Java provides modern Map methods to handle it:
+            1. Only insert if missing (putIfAbsent)
+            2. Throw an error or handle duplicates manually (merge)
+            If you wanted to combine or add the numbers together instead of overwriting, you could do this:
+               person.put("John", 23);
+               // If "John" exists, add the old value and new value together
+               person.merge("John", 29, Integer::sum);
+
+               System.out.println(person); // Prints: {John=52}
+
+
+    NB
+        Summary
+         - If the key is the same, Java overwrites the value.
+         - If the keys are different but collide in memory, Java chains them in a List / Tree.
+
+
+======================================================================================================
+| Situation              | Bucket Finding   | Equality Check         | Result                      |
+| ---------------------- | ---------------- | ---------------------- | --------------------------- |
+| Override neither       | Identity-based   | Identity-based         | Works by reference identity |
+| Override only equals   | ❌ Wrong bucket   | Never reached          | Retrieval fails             |
+| Override only hashCode | ✅ Correct bucket | ❌ Reference comparison | Retrieval fails             |
+| Override both          | ✅ Correct bucket | ✅ Logical equality     | Correct behavior            |

@@ -3,13 +3,13 @@
        - A child is a strict subtype of the parent
 
     2. Behavior is fully compatible
-       - Child must not break expectations of parent
+       - Child must not break expectations of parent ( Liskov Substitution Principle )
          if parent says fly, child should not walk
 
     3. Stable hierarchy
        - Inheritance works best when
          ~ the domain doesn't change much
-         ~ Behavior ir predictable
+         ~ Behavior is predictable
 
  2. Why Inheritance breaks systems
     1. Tight coupling

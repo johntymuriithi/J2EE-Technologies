@@ -1,0 +1,116 @@
+    Strings and String Immutability
+
+        ~ A String is object that stores a sequence of character in memory.
+        ~ It is a final, immutable object backed by internal character data
+
+    Ways to create Strings
+        1. String Literal (stores in the string pool)
+        2. new keyword - new obj created in heap memory
+
+    String pool exists for the following reasons:
+        1. To optimize:
+            - Memory usage
+            - performance
+            - reuse of common strings
+
+    Why Strings are IMMUTABLE
+        1. String Pool safety
+            If Strings were mutable:
+
+            String a = "Hello";
+            String b = "Hello";
+
+            b.append("X");
+
+            👉 a would also change ❌
+
+            Pool would become corrupted.
+        2. Security
+            Strings are used in:
+
+                database URLs
+                file paths
+                class loading
+                authentication tokens
+
+                If mutable:
+
+                someone changes password string after validation
+
+                💥 security breach
+
+            ✅ 3. Thread safety
+
+                Immutable objects:
+
+                can be shared across threads safely
+                no synchronization needed
+
+A String in Java is an immutable object whose value is stored in the String pool (for literals) or heap
+(for new objects), designed to be safely shared across the JVM without risk of modification, enabling caching, security, and consistent hashing behavior.
+
+==============================================================================
+    Strings are immutable in java
+     ~ Every time you "modify" a string
+        String name = "John";
+        name = name + "mwangi";
+
+        👉 Java does NOT modify the original object
+        👉 It creates a NEW object every time
+
+        This single line triggers a multi-step process under the hood:
+            Literal Creation: The literal " kio" is placed into the String Pool.
+            Concatenation: In modern Java, the JVM uses a StringBuilder (or invokedynamic) to append the two pieces of text together.
+            New Object: A brand-new String object containing "John kio" is created in the normal Heap (not the pool).
+            Reassignment: The variable name stops pointing to "John" and now points to "John kio"
+
+     🚀 Solution: StringBuilder / StringBuffer
+         Both solve the same problem:
+            “How do we modify strings efficiently without creating new objects?”
+
+     | Feature     | String     | StringBuilder               | StringBuffer             |
+     | ----------- | ---------- | --------------------------- | ------------------------ |
+     | Mutability  | ❌ No       | ✔ Yes                       | ✔ Yes                    |
+     | Thread-safe | ✔ Yes      | ❌ No                        | ✔ Yes                    |
+     | Speed       | ❌ Slow     | 🚀 Fast                     | 🐢 Slower                |
+     | Use case    | fixed text | single-thread modifications | multi-thread safe builds |
+
+     String is immutable and creates new objects on modification, while StringBuilder and StringBuffer provide mutable
+     character sequences; StringBuilder is fast but not thread-safe, while StringBuffer is synchronized for thread safety at the cost of performance.
+
+     ⚠️ 7. Common interview trap
+         ❓ “Which is better: StringBuffer or StringBuilder?”
+         Wrong answer:
+
+            StringBuffer because it is thread-safe
+
+         Correct answer:
+
+            StringBuilder is preferred in most cases because thread safety is unnecessary overhead unless shared across threads.
+
+     🧠 8. When to use what (real-world rule)
+         Use String when:
+             value is fixed
+             constants
+             config keys
+         Use StringBuilder when:
+             loops
+             concatenation
+             building JSON, SQL, logs
+         Use StringBuffer when:
+            shared mutable string across threads (rare in modern code)
+     🔥 9. Deep mental model
+     String:
+
+        “I create new identity every time I change”
+
+     StringBuilder:
+
+        “I modify the same object efficiently”
+
+     StringBuffer:
+
+        “I modify the same object safely across threads”
+
+
+

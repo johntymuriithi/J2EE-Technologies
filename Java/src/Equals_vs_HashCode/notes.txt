@@ -54,4 +54,111 @@
     collections. If two objects are equal according to equals(), they must have the same hashCode to maintain consistency
     in data structures like HashMap and HashSet.”
 
+=================================------------------------------------=========================
+    1. Default hashCode() ( from Object )
+        If you dont override it, then java uses Object.hashCode()
+
+        What does default hashCode represent?, object identity / memory-based identity
+
+        🔥 Important:
+            ~ Default hashCode is NOT actual memory address,
+              but JVM-derived identity hash.
+
+        2. Overridden hashCode()
+           🔥 What does THIS represent?
+           Now hashCode represents:
+               logical state/data
+               NOT object identity.
+
+    | Default hashCode                             | Overridden hashCode             |
+    | -------------------------------------------- | ------------------------------- |
+    | Based on object identity                     | Based on logical data           |
+    | Different objects → usually different hashes | Equal objects → same hash       |
+    | From Object class                            | Custom implementation           |
+    | Works with `==` semantics                    | Works with `equals()` semantics |
+
+    🧠 Deep insight
+    Default behavior
+        Java assumes:
+            "Objects are only equal if they are literally the same object"
+        Overridden behavior
+
+        You are telling Java:
+            "These objects should be considered equal based on their contents"
+        🔥 This is why equals and hashCode must align
+
+        If you override:
+            equals()
+            to compare logical data,
+            then hashCode must ALSO use same logical data.
+
+    | Concept             | Meaning                           |
+    | ------------------- | --------------------------------- |
+    | Default hashCode    | “Who am I physically?”            |
+    | Overridden hashCode | “What data defines me logically?” |
+
+=======================-----------------------------------------=============================
+    🧠 Default equals() vs Overridden equals()
+        | Default equals()         | Overridden equals()         |
+        | ------------------------ | --------------------------- |
+        | Compares object identity | Compares logical state/data |
+        | Uses `==` internally     | Uses custom logic           |
+        | “Same object?”           | “Same meaning?”             |
+
+        1. Default equals() (from Object)
+            Java uses Object.equals() which is basically return this == obj;
+            ~ "Are these literally the same object in memory"
+
+            🧠 Important
+                Default equals() = identity equality.
+
+        2. Overridden equals()
+            "Do these objects contain the same logical data?"
+
+        ⚖️ Big conceptual difference
+            Default equals
+                Physical identity
+            Overridden equals
+                Logical equality
+            🧠 Real-world analogy
+                Default equals()
+                    "Are these the exact same passport?"
+                Overridden equals()
+                    "Do these passports belong to the same person?"
+            🔥 Why override equals at all?
+                Because business systems usually care about:
+
+                    same email
+                    same ID
+                    same account number
+
+                    NOT whether objects occupy same memory.
+
+    🧠 Deep insight
+        equals() defines the equality rule.
+        hashCode() must follow that rule.
+
+    | Method              | Question               |
+    | ------------------- | ---------------------- |
+    | `==`                | Same object reference? |
+    | default equals()    | Same object reference? |
+    | overridden equals() | Same logical value?    |
+
+    🔥 One subtle thing many miss
+        Even after overriding equals:
+
+            u1 == u2
+
+        still checks reference identity ONLY.
+        == is never affected by overriding equals.
+=============================================================================================
+
+    🎯 Final mastery statement
+
+    Hash-based collections depend on stable hashCodes. If fields used in equals() or hashCode() are mutated after
+    insertion, the object may become unreachable, duplicated, or inconsistent because it remains stored in the
+    old bucket while future lookups use the new hashCode.
+
+
+
 

@@ -1,0 +1,4 @@
+- No client should be forced to depend on methods it does not use
+- Clients should not be forced to implement methods they do not need, so interfaces should be small and focused
+
+  ISP = "Split larger/fat/general interfaces into small focused/specific ones"

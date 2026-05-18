@@ -1,4 +1,5 @@
 - Subtypes must be fully substitutable for their parent types
+- Can I replace parent with child without breaking behavior?
 
 ❌ Broken example
 
