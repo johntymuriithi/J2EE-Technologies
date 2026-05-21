@@ -24,3 +24,26 @@
         while (it.hasNext()) {
             String s = it.next();
         }
+
+  Collection does NOT support indexing
+    - Collection itself has NO: get(index);
+    - Because not all collections are ordered
+        Eg; Set has no index concept
+
+    9. Why List extends Collection separately
+          Because List adds:
+              indexing
+              ordering
+              positional access
+              list.get(0);
+
+  Collection represents data structures contract while Collections is a utility class contains helpers algorithms
+  ~ Map is not part of collection coz stores key - value pairs not single elements
+  ~ Collection is not synchronized, e.g ArrayList, HashSet - Need wrappers or concurrent collections
+  ~ Performance depends on implementation
+
+  ~ ALWAYS program to interface  -- Collection<String> c = new ArrayList<>() NOT ArrayList<String> c = new ArrayList<>();
+  ~ Because implementation can change easily
+
+  Collection = abstract contract for storing groups of objects - Everything else specializes it.
+

@@ -1,3 +1,4 @@
+    - Iterator allows safe traversal of collections
     - It is a universal cursor form the java.util package that allows sequential traversal of elements in a collection
     such as List, Set, Queue.
     - It supports forward-only iteration and enables safe element removal during traversal without causing

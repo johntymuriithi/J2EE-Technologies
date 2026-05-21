@@ -1,0 +1,91 @@
+    Iterable - "This object can provide an iterator." "Can this object be iterated?"
+    Iterator - "This object can traverse elements one-by-one." "HOW do we iterate through it?"
+
+    - The collection provides the traversal mechanism, the iterator performs traversal
+
+    Iterable Interface
+        public interface Iterable<T> {
+            Iterator<T> iterator();
+        }
+    Why Iterable Exists
+        Because Java wanted for (String s : list) to work universally
+
+    Iterator Interface
+        public interface Iterator<E> {
+            boolean hasNext();
+            E next();
+            void remove();
+        }
+
+    Iterator is a Cursor - cursor/pointer moving through collection
+        List<String> list = List.of("A", "B", "C");
+        Iterator<String> it = list.iterator();
+
+        [A] [B] [C]
+         ↑
+        cursor before first element
+
+        hasNext() - Is another element available
+        next() - Returns current element, moves cursor forward
+
+                    Before next():
+
+                    [A] [B] [C]
+                     ↑
+
+                    next() returns A
+
+                    After next():
+
+                    [A] [B] [C]
+                         ↑
+        Iterator is STATEFUL - It remembers current position, traversal progress
+
+    🧠 11. Why Iterator Pattern Exists
+
+        Without iterator:
+
+        Every collection would need unique traversal logic.
+
+        Example:
+
+        arrays
+        linked lists
+        trees
+        hash tables
+
+        all traverse differently internally.
+
+        Iterator abstracts traversal.
+
+            | Responsibility | Owner      |
+            | -------------- | ---------- |
+            | data storage   | collection |
+            | traversal      | iterator   |
+
+     - Every collection creates its OWN iterator class
+        ArrayList → ArrayListIterator
+        LinkedList → LinkedListIterator
+        HashMap → HashIterator
+
+    Why iterator.remove() is safe
+        Because iterator updates:
+
+        cursor state
+        expectedModCount
+
+        properly.
+
+                | Iterable               | Iterator                   |
+                | ---------------------- | -------------------------- |
+                | provides iterator      | performs traversal         |
+                | collection capability  | traversal mechanism      j  |
+                | one method             | multiple methods           |
+                | reusable               | usually one-time traversal |
+                | represents data source | represents traversal state |
+
+
+        Collection stores data
+        Iterable exposes traversal capability
+        Iterator performs traversal using cursor state
+

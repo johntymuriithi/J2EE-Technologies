@@ -1,0 +1,225 @@
+In Java, fail-fast and fail-safe are two different design behaviors that determine how collections
+(like lists, sets, and maps) handle structural modifications while they are being iterated over
+
+🔥 Part 1 — What is Fail-Fast?
+        📌 Definition
+
+        A fail-fast collection immediately throws:
+
+        ConcurrentModificationException
+        ~ if it detects that the collection was structurally modified during iteration.
+
+        🧠 What does “structural modification” mean?
+
+        Structural modification =
+            1. When one or more elements are removed.
+            2. When one or more elements are added.
+            3. When the collection is replaced with other collection.
+            4. When the collection is sorted.
+
+        NOT:
+            Updating an element’s internal state
+            Replacing value in a Map via put() for same key
+
+        ❌ Classic Fail-Fast Example
+        List<String> list = new ArrayList<>();
+        list.add("A");
+        list.add("B");
+
+        for (String s : list) {
+            list.remove(s);   // ❌
+        }
+
+
+        Output:
+
+        ConcurrentModificationException
+
+        🧠 Why does this happen?
+
+        Internally, most collections maintain:
+
+        int modCount;
+
+
+        Each structural modification increments it.
+
+        Iterator stores:
+
+        expectedModCount;
+
+
+        On each next() call:
+
+        if (modCount != expectedModCount)
+            throw new ConcurrentModificationException();
+
+
+        So it’s a safety mechanism, not true thread safety.
+
+✅ Correct Way (Modern)
+Using Iterator
+Iterator<String> it = list.iterator();
+
+while (it.hasNext()) {
+    String s = it.next();
+    if (s.equals("A")) {
+        it.remove();   // ✅ safe
+    }
+}
+
+✅ Using removeIf() (Modern & Clean)
+list.removeIf(s -> s.equals("A"));
+
+
+This internally uses iterator.remove().
+
+⚠️ Important Clarification
+
+Fail-fast is:
+
+❌ NOT thread-safe
+
+❌ NOT guaranteed (best-effort detection)
+
+✔ Designed to detect programmer mistakes early
+
+🧵 Fail-Safe Alternative
+
+Example:
+
+CopyOnWriteArrayList<String> list = new CopyOnWriteArrayList<>();
+
+
+This does NOT throw ConcurrentModificationException.
+
+It works by:
+
+Iterating over a snapshot copy
+
+Tradeoff:
+
+More memory
+
+Slower writes
+==================================================================================================================
+    ~ Iterator allows safe traversal of collections
+    ~ If some collections are modified while being looped through, results is CME (ConcurrentModificationException), because
+    the system detects structural modification on this collections.
+
+    Fail-Fast Iterator
+        ~ iterator immediately fails if collection is structurally modified during iteration
+        ~ Used by ArrayList, HashMap, HashMap, LinkedList
+            Collection:
+            modCount = 5
+
+            Iterator created:
+            expectedModCount = 5
+
+            Collection modified:
+            modCount = 6
+
+            Iterator checks:
+            6 != 5
+
+            💥 Exception
+        🔥 7. Why Java does this
+            Without fail-fast:
+                Collection could become inconsistent during traversal.
+
+                Could lead to:
+                corrupted traversal
+                skipped elements
+                infinite loops
+                invalid memory state
+
+            Fail-fast detects bugs EARLY.
+
+            8. Important Truth
+
+                Fail-fast is:
+
+                BEST EFFORT
+
+                NOT guaranteed.
+
+                Java docs explicitly say this.
+
+                Because multithreading timing isn't deterministic.
+
+            🧠 9. Safe removal during iteration
+                This is allowed:
+                    Iterator<String> it = list.iterator();
+
+                    while(it.hasNext()) {
+                        String s = it.next();
+
+                        if(s.equals("A")) {
+                            it.remove();
+                        }
+                    }
+                Why safe?
+
+                Because iterator updates:
+
+                expectedModCount
+
+                internally.
+
+            ❌ This is unsafe
+            list.remove("A");
+
+            during iteration.
+
+            Because iterator doesn't know about it.
+
+    🚀 10. Fail-Safe Iterator
+        Definition
+            Iterator works on a CLONE/SNAPSHOT of collection instead of original collection.
+
+        So modifications don't affect iteration.
+
+        Used by:
+        CopyOnWriteArrayList
+        ConcurrentHashMap (weakly consistent)
+        Concurrent collections
+
+    14. Cost of Fail-Safe
+
+        Copying collection is expensive.
+        - Especially:
+            CopyOnWriteArrayList
+
+        - Every write creates new array copy.
+        - Excellent for:
+            many reads
+                few writes
+            Bad for:
+                heavy writes
+
+    🔥 15. ConcurrentHashMap Special Case
+
+        Its iterators are technically:
+            weakly consistent
+            Not pure fail-safe.
+        Meaning:
+            no exception
+            may reflect some updates
+            not guaranteed snapshot
+
+           | Feature              | Fail-Fast           | Fail-Safe             |
+           | -------------------- | ------------------- | --------------------- |
+           | Iterates over        | original collection | snapshot/copy         |
+           | Detects modification | yes                 | no                    |
+           | Throws CME           | yes                 | no                    |
+           | Thread-safe          | no                  | usually yes           |
+           | Performance          | faster              | more memory/copy cost |
+
+    Fail-fast is fundamentally a bug detection mechanism, NOT synchronization.
+        ~ It helps detect unsafe modification patterns early
+    Fail-Fast = "stop immediately if collection changes"
+    Fail-Safe = "Iterate safely on isolated snapshot"
+
+    Fail-fast iterators are generally preferred for performance and bug detection in normal applications,
+    while fail-safe iterators are better for concurrent environments where collections may be modified during iteration.
+    The choice depends on whether performance or concurrent safety is more important.

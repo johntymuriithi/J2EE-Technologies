@@ -1,0 +1,6 @@
+    ~ An iterator is NOT just a loop helper, It is a state machine, It stores traversal state internally
+    ~ Simplified Internal Structure
+        Contains: cursor, lastReturned, expectedModCount
+            cursor - next element position
+            lastReturned - last returned element index
+            expectedModCount - fail-fast tracking
